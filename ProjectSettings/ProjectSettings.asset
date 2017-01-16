@@ -454,7 +454,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     UNet: 1
-  cloudProjectId: 0acc183f-44b0-41f4-8c9e-aa42a878adea
+  cloudProjectId: e5c954d0-a440-4efc-91f8-8b058c5eb517
   projectName: capstone_kart_racer
-  organizationId: john-butts
+  organizationId: cramer240
   cloudEnabled: 0
