@@ -369,7 +369,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 15200000, guid: dc267fee4ade5174788e4b134b31fb11, type: 3}
+  m_Texture: {fileID: 15200000, guid: d471286533f9959468ee2e6bbd624bb8, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee164f8d014cbb84ba075e8e3563b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movie: {fileID: 15200000, guid: dc267fee4ade5174788e4b134b31fb11, type: 3}
+  movie: {fileID: 15200000, guid: d471286533f9959468ee2e6bbd624bb8, type: 3}
 --- !u!1 &2132785300
 GameObject:
   m_ObjectHideFlags: 0
