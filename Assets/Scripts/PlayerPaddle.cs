@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerPaddle : MonoBehaviour {
 
 	void Start () {
-		
+
 	}
 	
 	void Update () {
+
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(new Vector3(-16.0f * Time.deltaTime , 0.0f, 0.0f));
@@ -17,5 +18,6 @@ public class PlayerPaddle : MonoBehaviour {
         {
             transform.Translate(new Vector3(16.0f * Time.deltaTime, 0.0f, 0.0f));
         }
+
 	}
 }
