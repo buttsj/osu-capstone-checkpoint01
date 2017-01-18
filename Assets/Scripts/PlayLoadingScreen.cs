@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayLoadingScreen : MonoBehaviour {
@@ -19,6 +20,7 @@ public class PlayLoadingScreen : MonoBehaviour {
         {
             Debug.Log("movie is done");
             // load next scene
+            SceneManager.LoadScene("MainMenu");
             timer = 0.0f;
         }
      }
