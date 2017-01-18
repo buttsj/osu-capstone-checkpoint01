@@ -275,8 +275,8 @@ Camera:
   m_GameObject: {fileID: 1740194815}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -340,7 +340,7 @@ RectTransform:
   m_GameObject: {fileID: 2053586429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2132785304}
   m_RootOrder: 0
@@ -348,7 +348,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2053586431
 MonoBehaviour:
@@ -369,7 +369,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 15200000, guid: d471286533f9959468ee2e6bbd624bb8, type: 3}
+  m_Texture: {fileID: 15200000, guid: ed2556bd91913384e964ec7291913351, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee164f8d014cbb84ba075e8e3563b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movie: {fileID: 15200000, guid: d471286533f9959468ee2e6bbd624bb8, type: 3}
+  movie: {fileID: 15200000, guid: ed2556bd91913384e964ec7291913351, type: 3}
 --- !u!1 &2132785300
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +457,7 @@ Canvas:
   m_GameObject: {fileID: 2132785300}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1740194819}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
