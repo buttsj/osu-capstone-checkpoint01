@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 372896861}
   - component: {fileID: 372896860}
   - component: {fileID: 372896864}
+  - component: {fileID: 372896865}
   m_Layer: 0
   m_Name: Paddle2
   m_TagString: Untagged
@@ -441,8 +442,19 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &372896865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372896859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92da1c5d3f908944fa9e217dc6741776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &413981231
 GameObject:
   m_ObjectHideFlags: 0

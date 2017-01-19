@@ -12,6 +12,8 @@ public class BallBehavior : MonoBehaviour {
 
     private Vector3 oldVelocity;
 
+    private Vector3 ballVelocity;
+
 	void Start () {
 
         active = false;
@@ -19,6 +21,8 @@ public class BallBehavior : MonoBehaviour {
         paddle1 = GameObject.Find("Paddle1");
 
         rb = GetComponent<Rigidbody>();
+
+        ballVelocity = new Vector3(0, 0, 30f);
 	}
 	
 	void FixedUpdate () {
@@ -26,7 +30,7 @@ public class BallBehavior : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && !active)
         {
             active = true;
-            rb.velocity = new Vector3(0, 0, 30) + paddle1.GetComponent<Rigidbody>().velocity;
+            rb.velocity = ballVelocity + paddle1.GetComponent<Rigidbody>().velocity;
         }
 
         if (!active)
