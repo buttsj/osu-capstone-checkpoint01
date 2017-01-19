@@ -51,12 +51,13 @@ public class BallBehavior : MonoBehaviour {
         {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
         }
+
         oldVelocity = rb.velocity;
 
         if(paddle1Score <= 10 && paddle2Score <= 10)
         {
             ScoreUpdate();
-    }
+        }
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -91,8 +92,7 @@ public class BallBehavior : MonoBehaviour {
             if (paddle1Score >= 11)
             {
                 winUI.text = "Player 1 Wins!";
-      
-    }
+            }
             else
             {
                 transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z);
@@ -109,7 +109,7 @@ public class BallBehavior : MonoBehaviour {
             if (paddle2Score >= 11)
             {
                 winUI.text = "Player 2 Wins!";
-}
+            }
             else
             {
                 transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z);
