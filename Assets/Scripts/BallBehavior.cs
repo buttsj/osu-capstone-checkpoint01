@@ -14,7 +14,10 @@ public class BallBehavior : MonoBehaviour {
 
     private Vector3 ballVelocity;
 
-	void Start () {
+    private int paddle1Score;
+    private int paddle2Score;
+
+    void Start() {
 
         active = false;
 
@@ -23,9 +26,12 @@ public class BallBehavior : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 
         ballVelocity = new Vector3(0, 0, 30f);
-	}
-	
-	void FixedUpdate () {
+
+        paddle1Score = 0;
+        paddle2Score = 0;
+    }
+
+    void FixedUpdate() {
 
         if (Input.GetKeyDown(KeyCode.Space) && !active)
         {
@@ -38,6 +44,8 @@ public class BallBehavior : MonoBehaviour {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
         }
         oldVelocity = rb.velocity;
+
+        ScoreUpdate();
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -58,4 +66,27 @@ public class BallBehavior : MonoBehaviour {
         Debug.Log(rb.velocity);
     }
 
+
+    private void ScoreUpdate()
+    {
+        if (transform.position.z > 10)
+        {
+            paddle1Score++;
+            if (paddle1Score >= 11)
+            {
+                Debug.Log("Player 1 Wins!");
+            }
+            else
+            {
+            }
+        }
+        else if (transform.position.z < -10)
+        {
+            paddle2Score++;
+            if (paddle2Score >= 11)
+            {
+                Debug.Log("Player 2 Wins!");
+            }
+        }
+    }
 }
