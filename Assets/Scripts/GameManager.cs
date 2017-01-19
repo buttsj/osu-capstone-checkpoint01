@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public Text paddle2UI;
     public Text winUI;
 
+    private float defaultTime;
+
     void Start () {
 
         ball = GameObject.Find("Ball");
@@ -24,9 +26,24 @@ public class GameManager : MonoBehaviour {
         paddle1UI.text = "Player 1 Score: " + paddle1Score;
         paddle2UI.text = "Player 2 Score: " + paddle2Score;
 
+        defaultTime = Time.timeScale;
+
     }
 	
 	void Update () {
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if(Time.timeScale != 0)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = defaultTime;
+            }
+            
+        }
 
         if (paddle1Score <= 10 && paddle2Score <= 10)
         {
