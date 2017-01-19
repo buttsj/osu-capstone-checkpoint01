@@ -87,7 +87,7 @@ public class BallBehavior : MonoBehaviour {
         {
             paddle1Score++;
             paddle1UI.text = "Player 1 Score: " + paddle1Score;
-
+            gameObject.GetComponent<AudioSource>().Play();
             if (paddle1Score >= 11)
             {
                 winUI.text = "Player 1 Wins!";
@@ -99,12 +99,13 @@ public class BallBehavior : MonoBehaviour {
                 rb.velocity = Vector3.zero;
                 active = false;
             }
+            
         }
         else if (transform.position.z < -18)
         {
             paddle2Score++;
             paddle2UI.text = "Player 2 Score: " + paddle2Score;
-
+            gameObject.GetComponent<AudioSource>().Play();
             if (paddle2Score >= 11)
             {
                 winUI.text = "Player 2 Wins!";
