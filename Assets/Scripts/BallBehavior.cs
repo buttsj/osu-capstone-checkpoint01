@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BallBehavior : MonoBehaviour {
 
@@ -72,7 +71,7 @@ public class BallBehavior : MonoBehaviour {
 
     public void RestBall()
     {
-        transform.position = Vector3.zero;
+        transform.position = new Vector3(50, 50, 50);
         rb.velocity = Vector3.zero;
     }
 
