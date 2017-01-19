@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallBehavior : MonoBehaviour {
 
@@ -17,6 +18,10 @@ public class BallBehavior : MonoBehaviour {
     private int paddle1Score;
     private int paddle2Score;
 
+    public Text paddle1UI;
+    public Text paddle2UI;
+    public Text winUI;
+
     void Start() {
 
         active = false;
@@ -29,6 +34,9 @@ public class BallBehavior : MonoBehaviour {
 
         paddle1Score = 0;
         paddle2Score = 0;
+
+        paddle1UI.text = "Player 1 Score: " + paddle1Score;
+        paddle2UI.text = "Player 2 Score: " + paddle2Score;
     }
 
     void FixedUpdate() {
@@ -45,7 +53,10 @@ public class BallBehavior : MonoBehaviour {
         }
         oldVelocity = rb.velocity;
 
-        ScoreUpdate();
+        if(paddle1Score <= 10 && paddle2Score <= 10)
+        {
+            ScoreUpdate();
+        }
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -62,30 +73,42 @@ public class BallBehavior : MonoBehaviour {
         }
         else if (collision.gameObject.name == "RightWall" || collision.gameObject.name == "LeftWall") {
             rb.velocity = new Vector3(-oldVelocity.x, 0, oldVelocity.z);
-        }  
-        Debug.Log(rb.velocity);
+        }
     }
 
 
     private void ScoreUpdate()
     {
-        if (transform.position.z > 10)
+        if (transform.position.z > 18)
         {
             paddle1Score++;
+            paddle1UI.text = "Player 1 Score: " + paddle1Score;
+
             if (paddle1Score >= 11)
             {
-                Debug.Log("Player 1 Wins!");
+                winUI.text = "Player 1 Wins!";
             }
             else
             {
+                transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z);
+                rb.velocity = Vector3.zero;
+                active = false;
             }
         }
-        else if (transform.position.z < -10)
+        else if (transform.position.z < -18)
         {
             paddle2Score++;
+            paddle2UI.text = "Player 2 Score: " + paddle2Score;
+
             if (paddle2Score >= 11)
             {
-                Debug.Log("Player 2 Wins!");
+                winUI.text = "Player 2 Wins!";
+            }
+            else
+            {
+                transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z);
+                rb.velocity = Vector3.zero;
+                active = false;
             }
         }
     }
