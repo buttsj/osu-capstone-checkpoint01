@@ -51,11 +51,13 @@ public class BallBehavior : MonoBehaviour {
             {
                 rb.velocity = -oldVelocity;
             }
+            
         }
         else if (collision.gameObject.name == "RightWall" || collision.gameObject.name == "LeftWall") {
             rb.velocity = new Vector3(-oldVelocity.x, 0, oldVelocity.z);
-        }  
-        Debug.Log(rb.velocity);
+        }
+        AudioSource source = collision.gameObject.GetComponent<AudioSource>();
+        source.Play();
     }
 
 }
