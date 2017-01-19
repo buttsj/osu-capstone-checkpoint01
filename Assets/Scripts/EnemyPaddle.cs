@@ -10,17 +10,25 @@ public class EnemyPaddle : MonoBehaviour {
 	void Start () {
         ball = GameObject.Find("Ball");
         rb = GetComponent<Rigidbody>();
-        paddleVelocity = new Vector3(25f, 0, 0);
+        paddleVelocity = new Vector3(30f, 0, 0);
 	}
 	
 	void FixedUpdate () {
-        if (transform.position.x < ball.transform.position.x)
+        if (ball.GetComponent<Rigidbody>().velocity.z > 0)
         {
-            rb.velocity = paddleVelocity;
-        }
-        else if (transform.position.x > ball.transform.position.x)
-        {
-            rb.velocity = -paddleVelocity;
+            float positionDifference = transform.position.x - ball.transform.position.x;
+            if (positionDifference < -1)
+            {
+                rb.velocity = paddleVelocity;
+            }
+            else if (positionDifference > 1)
+            {
+                rb.velocity = -paddleVelocity;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
         }
         else {
             rb.velocity = Vector3.zero;
