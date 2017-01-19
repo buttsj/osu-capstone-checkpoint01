@@ -10,6 +10,8 @@ public class BallBehavior : MonoBehaviour {
 
     private Rigidbody rb;
 
+    private Vector3 oldVelocity;
+
 	void Start () {
 
         active = false;
@@ -19,19 +21,37 @@ public class BallBehavior : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !active)
         {
             active = true;
-            rb.AddForce(new Vector3(0.0f, 0.0f, 30.0f), ForceMode.VelocityChange);
+            rb.velocity = new Vector3(0, 0, 30) + paddle1.GetComponent<Rigidbody>().velocity;
         }
 
         if (!active)
         {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
         }
+        oldVelocity = rb.velocity;
+    }
 
-	}
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.name == "Paddle1" || collision.gameObject.name == "Paddle2")
+        {
+            if (!collision.gameObject.GetComponent<Rigidbody>().velocity.Equals(Vector3.zero))
+            {
+                rb.velocity = new Vector3(collision.gameObject.GetComponent<Rigidbody>().velocity.x, 0, -oldVelocity.z );
+            }
+            else
+            {
+                rb.velocity = -oldVelocity;
+            }
+        }
+        else if (collision.gameObject.name == "RightWall" || collision.gameObject.name == "LeftWall") {
+            rb.velocity = new Vector3(-oldVelocity.x, 0, oldVelocity.z);
+        }  
+        Debug.Log(rb.velocity);
+    }
 
 }

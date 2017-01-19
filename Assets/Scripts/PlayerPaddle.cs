@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPaddle : MonoBehaviour {
+    Rigidbody rb;
 
 	void Start () {
-
-	}
+        rb = GetComponent<Rigidbody>();
+    }
 	
-	void Update () {
+	void FixedUpdate () {
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(new Vector3(-16.0f * Time.deltaTime , 0.0f, 0.0f));
+            rb.velocity = new Vector3(-16f, 0, 0);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(new Vector3(16.0f * Time.deltaTime, 0.0f, 0.0f));
+            rb.velocity = new Vector3(16f, 0, 0);
+        }
+        else {
+            rb.velocity = Vector3.zero;
         }
 
 	}
