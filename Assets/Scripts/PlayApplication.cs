@@ -7,6 +7,6 @@ public class PlayApplication : MonoBehaviour {
 
 	public void Play() {
         // Play Game
-        SceneManager.LoadScene("PONG");
+        SceneManager.LoadScene("PingPong");
     }
 }

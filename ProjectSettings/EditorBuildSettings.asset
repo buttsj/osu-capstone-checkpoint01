@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MainMenu.unity
+    path: Assets/Loading.unity
   - enabled: 1
+    path: Assets/MainMenu.unity
+  - enabled: 0
     path: Assets/PONG.unity
+  - enabled: 1
+    path: Assets/PingPong.unity
