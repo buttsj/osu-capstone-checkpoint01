@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestStateManager : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class TestStateManager : MonoBehaviour {
     private GameObject paddle2;
     private GameObject ball;
     private GameObject manager;
+
+    public Text winText;
 
     void Start () {
 
@@ -28,6 +31,7 @@ public class TestStateManager : MonoBehaviour {
             ball.GetComponent<BallBehavior>().Active = false;
             setTestVelocities((new Vector3(0, 0, 0)), (new Vector3(0, 0, 0)), (new Vector3(0, 0, 0)));
             setTestScores(0, 0);
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha9))
         {
@@ -35,6 +39,7 @@ public class TestStateManager : MonoBehaviour {
             ball.GetComponent<BallBehavior>().Active = false;
             setTestVelocities((new Vector3(0, 0, 0)), (new Vector3(0, 0, 0)), (new Vector3(0, 0, 0)));
             setTestScores(10, 0);
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha8))
         {
@@ -42,6 +47,7 @@ public class TestStateManager : MonoBehaviour {
             ball.GetComponent<BallBehavior>().Active = false;
             setTestVelocities((new Vector3(0, 0, 0)), (new Vector3(0, 0, 0)), (new Vector3(0, 0, 0)));
             setTestScores(0, 10);
+            winText.text = "";
         }
 
     }

@@ -31,6 +31,8 @@ public class SaveManager : MonoBehaviour {
     private int textTimer;
     private const int MAXTIME = 60;
 
+    public Text winText;
+
     void Start () {
 
         currentSavePosition = 0;
@@ -63,6 +65,8 @@ public class SaveManager : MonoBehaviour {
         {
             int displayPosition = currentSavePosition + 1;
             savedText.text = "Saved to " + displayPosition;
+
+            winText.text = "";
 
             saveCurrentPositions();
 
