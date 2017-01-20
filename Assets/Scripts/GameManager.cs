@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour {
             
         }
 
+        if (Input.GetKeyDown(KeyCode.Backslash))
+        {
+            Application.CaptureScreenshot("Screenshot.png");
+        }
+
         if (paddle1Score <= 10 && paddle2Score <= 10)
         {
             ScoreUpdate();
