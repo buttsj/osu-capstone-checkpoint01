@@ -75,4 +75,9 @@ public class BallBehavior : MonoBehaviour {
         rb.velocity = Vector3.zero;
     }
 
+    public bool Active {
+        get { return active; }
+        set { active = value; }
+    }
+
 }
