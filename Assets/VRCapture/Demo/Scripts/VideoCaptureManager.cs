@@ -8,7 +8,7 @@ namespace VRCapture.Demo {
         bool enable360Camera = false;
         bool enableTopDownCamera = true;
         bool enableLeftRightCamera = true;
-        bool enableOnlyAudio = false;
+        //bool enableOnlyAudio = false;
 
         void Start() {
             VRCapture.Instance.RegisterSessionCompleteDelegate(HandleCaptureFinish);

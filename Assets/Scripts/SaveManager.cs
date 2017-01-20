@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour {
 
@@ -26,6 +27,10 @@ public class SaveManager : MonoBehaviour {
     private int[] p1Scores;
     private int[] p2Scores;
 
+    public Text savedText;
+    private int textTimer;
+    private const int MAXTIME = 60;
+
     void Start () {
 
         currentSavePosition = 0;
@@ -48,14 +53,16 @@ public class SaveManager : MonoBehaviour {
         p1Scores = new int[NUMSTATES];
         p2Scores = new int[NUMSTATES];
 
+        savedText.text = "";
+
     }
 	
-	void FixedUpdate() {
+	void Update() {
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-
-            Debug.Log("Saved to " + (currentSavePosition + 1));
+            int displayPosition = currentSavePosition + 1;
+            savedText.text = "Saved to " + displayPosition;
 
             saveCurrentPositions();
 
@@ -72,6 +79,8 @@ public class SaveManager : MonoBehaviour {
                 currentSavePosition = 0;
             }
         }
+
+        handleSaveMessage();
 
         loadState();
 
@@ -97,6 +106,19 @@ public class SaveManager : MonoBehaviour {
     {
         p1Scores[currentSavePosition] = manager.GetComponent<GameManager>().GetP1Score;
         p2Scores[currentSavePosition] = manager.GetComponent<GameManager>().GetP2Score;
+    }
+
+    private void handleSaveMessage()
+    {
+        if (savedText.text != "")
+        {
+            textTimer++;
+            if (textTimer >= MAXTIME)
+            {
+                savedText.text = "";
+                textTimer = 0;
+            }
+        }
     }
 
     private void loadState()
