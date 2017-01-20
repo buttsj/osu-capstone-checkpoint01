@@ -66,8 +66,6 @@ public class SaveManager : MonoBehaviour {
             int displayPosition = currentSavePosition + 1;
             savedText.text = "Saved to " + displayPosition;
 
-            winText.text = "";
-
             saveCurrentPositions();
 
             saveCurrentVelocities();
@@ -142,6 +140,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && (paddle1Positions[1] != null))
         {
@@ -158,6 +158,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && (paddle1Positions[2] != null))
         {
@@ -174,6 +176,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && (paddle1Positions[3] != null))
         {
@@ -190,6 +194,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
     }
 
