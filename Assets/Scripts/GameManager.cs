@@ -90,4 +90,27 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
+
+    public int GetP1Score
+    {
+        get { return paddle1Score; }
+    }
+
+    public int GetP2Score
+    {
+        get { return paddle2Score; }
+    }
+
+    public void setP1Score(int score)
+    {
+        paddle1Score = score;
+        paddle1UI.text = "Player 1 Score: " + paddle1Score;
+    }
+
+    public void setP2Score(int score)
+    {
+        paddle2Score = score;
+        paddle2UI.text = "Player 2 Score: " + paddle2Score;
+    }
+
 }
