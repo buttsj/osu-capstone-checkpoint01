@@ -53,6 +53,15 @@ public class BallBehavior : MonoBehaviour {
                 rb.velocity = -oldVelocity;
             }
 
+            float xDifference = gameObject.transform.position.x - collision.gameObject.transform.position.x;
+            if (collision.gameObject.name == "Paddle1" && (xDifference > 3 || xDifference < -3))
+            {
+                gameObject.transform.Translate(0, 0, -5);
+            }
+            else if (collision.gameObject.name == "Paddle2" && (xDifference > 3 || xDifference < -3)) {
+                gameObject.transform.Translate(0, 0, 5);
+            }
+
         }
         else if (collision.gameObject.name == "RightWall" || collision.gameObject.name == "LeftWall") {
             rb.velocity = new Vector3(-oldVelocity.x, 0, oldVelocity.z);
