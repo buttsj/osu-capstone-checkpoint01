@@ -31,6 +31,8 @@ public class SaveManager : MonoBehaviour {
     private int textTimer;
     private const int MAXTIME = 60;
 
+    public Text winText;
+
     void Start () {
 
         currentSavePosition = 0;
@@ -138,6 +140,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && (paddle1Positions[1] != null))
         {
@@ -154,6 +158,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && (paddle1Positions[2] != null))
         {
@@ -170,6 +176,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && (paddle1Positions[3] != null))
         {
@@ -186,6 +194,8 @@ public class SaveManager : MonoBehaviour {
 
             manager.GetComponent<GameManager>().setP1Score(p1Scores[statePosition]);
             manager.GetComponent<GameManager>().setP2Score(p2Scores[statePosition]);
+
+            winText.text = "";
         }
     }
 
