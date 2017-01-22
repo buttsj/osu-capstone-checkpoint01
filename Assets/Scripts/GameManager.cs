@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -33,17 +34,12 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if(Time.timeScale != 0)
-            {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = defaultTime;
-            }
-            
+        if (Input.GetKeyDown(KeyCode.P)) {
+            Pause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            BackToMainMenu();
         }
 
         if (Input.GetKeyDown(KeyCode.Backslash))
@@ -55,6 +51,19 @@ public class GameManager : MonoBehaviour {
         if (paddle1Score <= 10 && paddle2Score <= 10)
         {
             ScoreUpdate();
+        }
+    }
+
+    private void BackToMainMenu() {
+        SceneManager.LoadScene("MainMenu");
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainMenu"));
+    }
+
+    private void Pause() {
+        if (Time.timeScale != 0) {
+            Time.timeScale = 0;
+        } else {
+            Time.timeScale = defaultTime;
         }
     }
 
