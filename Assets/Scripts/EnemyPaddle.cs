@@ -12,7 +12,7 @@ public class EnemyPaddle : MonoBehaviour {
         ball = GameObject.Find("Ball");
         rb = GetComponent<Rigidbody>();
         paddleVelocity = new Vector3(30f, 0, 0);
-        wanderVelocity = new Vector3(20f, 0, 0);
+        wanderVelocity = new Vector3(25f, 0, 0);
 	}
 	
 	void FixedUpdate () {

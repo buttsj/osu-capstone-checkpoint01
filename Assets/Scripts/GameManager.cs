@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     private int paddle1Score;
     private int paddle2Score;
 
+    private int screenshotNumber;
     public Text paddle1UI;
     public Text paddle2UI;
     public Text winUI;
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour {
         paddle2UI.text = "Player 2 Score: " + paddle2Score;
 
         defaultTime = Time.timeScale;
-
+        screenshotNumber = 1;
     }
 	
 	void Update () {
@@ -47,7 +48,8 @@ public class GameManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Backslash))
         {
-            Application.CaptureScreenshot("Screenshot.png");
+            Application.CaptureScreenshot("Screenshot" + screenshotNumber + ".png");
+            screenshotNumber++;
         }
 
         if (paddle1Score <= 10 && paddle2Score <= 10)
