@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
+            BackToMainMenu();
         }
 
         if (Input.GetKeyDown(KeyCode.Backslash))
@@ -51,6 +52,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private void BackToMainMenu() {
+        SceneManager.LoadScene("MainMenu");
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainMenu"));
     }
 
     private void Pause() {
