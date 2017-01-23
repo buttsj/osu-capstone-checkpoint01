@@ -18,6 +18,7 @@ public class BallBehavior : MonoBehaviour {
     private int zTimer;
     private float oldZPos;
     private const int MAXZTIMER = 10;
+    private bool resting;
 
     void Start() {
 
@@ -30,6 +31,8 @@ public class BallBehavior : MonoBehaviour {
         ballVelocity = new Vector3(0, 0, 30f);
 
         zTimer = 0;
+
+        resting = false;
     }
 
     void FixedUpdate() {
@@ -40,7 +43,10 @@ public class BallBehavior : MonoBehaviour {
             rb.velocity = ballVelocity + paddle1.GetComponent<Rigidbody>().velocity;
         }
 
-        handleInactiveBall();
+        if (!resting)
+        {
+            handleInactiveBall();
+        }
 
         if (!active)
         {
@@ -88,6 +94,7 @@ public class BallBehavior : MonoBehaviour {
         transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z+1);
         rb.velocity = Vector3.zero;
         active = false;
+        resting = false;
         zTimer = 0;
     }
 
@@ -95,6 +102,7 @@ public class BallBehavior : MonoBehaviour {
     {
         transform.position = new Vector3(50, 50, 50);
         rb.velocity = Vector3.zero;
+        resting = true;
     }
 
     public bool Active {
