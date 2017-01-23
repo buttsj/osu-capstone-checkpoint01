@@ -57,6 +57,22 @@ public class SaveManager : MonoBehaviour {
 
         savedText.text = "";
 
+        for(int i = 0; i < NUMSTATES; i++)
+        {
+            paddle1Positions[i] = new Vector3(0, 2, -16);
+            paddle2Positions[i] = new Vector3(0, 2, 16);
+            ballPositions[i] = new Vector3(0, 2, -15);
+
+            paddle1Velocities[i] = new Vector3(0.0f, 0.0f, 0.0f);
+            paddle2Velocities[i] = new Vector3(0.0f, 0.0f, 0.0f);
+            ballVelocities[i] = new Vector3(0.0f, 0.0f, 0.0f);
+
+            ballActiveStates[i] = false;
+
+            p1Scores[i] = 0;
+            p2Scores[i] = 0;
+        }
+
     }
 	
 	void Update() {
@@ -125,7 +141,7 @@ public class SaveManager : MonoBehaviour {
 
     private void loadState()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && (paddle1Positions[0] != null))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             int statePosition = 0;
             paddle1.transform.position = paddle1Positions[statePosition];
@@ -143,7 +159,7 @@ public class SaveManager : MonoBehaviour {
 
             winText.text = "";
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && (paddle1Positions[1] != null))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             int statePosition = 1;
             paddle1.transform.position = paddle1Positions[statePosition];
@@ -161,7 +177,7 @@ public class SaveManager : MonoBehaviour {
 
             winText.text = "";
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && (paddle1Positions[2] != null))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             int statePosition = 2;
             paddle1.transform.position = paddle1Positions[statePosition];
@@ -179,7 +195,7 @@ public class SaveManager : MonoBehaviour {
 
             winText.text = "";
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && (paddle1Positions[3] != null))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             int statePosition = 3;
             paddle1.transform.position = paddle1Positions[statePosition];
