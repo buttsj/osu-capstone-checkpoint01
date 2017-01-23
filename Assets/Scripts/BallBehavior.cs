@@ -37,7 +37,6 @@ public class BallBehavior : MonoBehaviour {
         {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
         }
-
         oldVelocity = rb.velocity;
     }
 
@@ -47,24 +46,27 @@ public class BallBehavior : MonoBehaviour {
             if (!collision.gameObject.GetComponent<Rigidbody>().velocity.Equals(Vector3.zero))
             {
                 rb.velocity = new Vector3(collision.gameObject.GetComponent<Rigidbody>().velocity.x, 0, -oldVelocity.z);
+                oldVelocity = rb.velocity;
             }
             else
             {
                 rb.velocity = -oldVelocity;
+                oldVelocity = rb.velocity;
             }
 
             float xDifference = gameObject.transform.position.x - collision.gameObject.transform.position.x;
-            if (collision.gameObject.name == "Paddle1" && (xDifference > 3 || xDifference < -3))
+            if (collision.gameObject.name == "Paddle1" && (xDifference > 2.5f || xDifference < -2.5f))
             {
                 gameObject.transform.Translate(0, 0, -5);
             }
-            else if (collision.gameObject.name == "Paddle2" && (xDifference > 3 || xDifference < -3)) {
+            else if (collision.gameObject.name == "Paddle2" && (xDifference > 2.5f || xDifference < -2.5f)) {
                 gameObject.transform.Translate(0, 0, 5);
             }
 
         }
         else if (collision.gameObject.name == "RightWall" || collision.gameObject.name == "LeftWall") {
             rb.velocity = new Vector3(-oldVelocity.x, 0, oldVelocity.z);
+            oldVelocity = rb.velocity;
         }
 
         AudioSource source = collision.gameObject.GetComponent<AudioSource>();
@@ -73,7 +75,7 @@ public class BallBehavior : MonoBehaviour {
 
     public void ResetBall()
     {
-        transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z);
+        transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z+1);
         rb.velocity = Vector3.zero;
         active = false;
     }
