@@ -7,12 +7,16 @@ public class BallBehavior : MonoBehaviour {
     private bool active;
 
     private GameObject paddle1;
+    private GameObject paddle2;
 
     private Rigidbody rb;
 
     private Vector3 oldVelocity;
 
     private Vector3 ballVelocity;
+
+    private int zTimer;
+    private float oldZPos;
 
     void Start() {
 
@@ -23,6 +27,8 @@ public class BallBehavior : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 
         ballVelocity = new Vector3(0, 0, 30f);
+
+        zTimer = 0;
     }
 
     void FixedUpdate() {
@@ -33,10 +39,13 @@ public class BallBehavior : MonoBehaviour {
             rb.velocity = ballVelocity + paddle1.GetComponent<Rigidbody>().velocity;
         }
 
+        handleInactiveBall();
+
         if (!active)
         {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
         }
+
         oldVelocity = rb.velocity;
     }
 
@@ -89,6 +98,30 @@ public class BallBehavior : MonoBehaviour {
     public bool Active {
         get { return active; }
         set { active = value; }
+    }
+
+    private void handleInactiveBall()
+    {
+        if (oldZPos == transform.position.z)
+        {
+            zTimer++;
+        }
+        else
+        {
+            zTimer = 0;
+        }
+        if (zTimer > 100)
+        {
+            if(oldZPos > 0)
+            {
+                transform.position = new Vector3(0.0f, 2.0f, 20.0f);
+            }
+            else if(oldZPos <= 0)
+            {
+                transform.position = new Vector3(0.0f, 2.0f, -20.0f);
+            }
+        }
+        oldZPos = transform.position.z;
     }
 
 }
