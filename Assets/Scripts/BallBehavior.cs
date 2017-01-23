@@ -17,6 +17,7 @@ public class BallBehavior : MonoBehaviour {
 
     private int zTimer;
     private float oldZPos;
+    private const int MAXZTIMER = 10;
 
     void Start() {
 
@@ -87,6 +88,7 @@ public class BallBehavior : MonoBehaviour {
         transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z+1);
         rb.velocity = Vector3.zero;
         active = false;
+        zTimer = 0;
     }
 
     public void RestBall()
@@ -110,7 +112,7 @@ public class BallBehavior : MonoBehaviour {
         {
             zTimer = 0;
         }
-        if (zTimer > 100)
+        if (zTimer > MAXZTIMER)
         {
             if(oldZPos > 0)
             {
