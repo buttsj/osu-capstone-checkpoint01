@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace VRCapture.Demo {
+namespace VRCapture.Demo
+{
 
-    public class VideoCaptureManager : MonoBehaviour {
+    public class VideoCaptureManager : MonoBehaviour
+    {
 
         bool enableMainCamera = false;
         bool enable360Camera = false;
@@ -10,36 +12,35 @@ namespace VRCapture.Demo {
         bool enableLeftRightCamera = true;
         //bool enableOnlyAudio = false;
 
-        void Start() {
+        void Start()
+        {
             VRCapture.Instance.RegisterSessionCompleteDelegate(HandleCaptureFinish);
-            //Application.runInBackground = true;
+            Application.runInBackground = true;
+            VRCapture.Instance.GetCaptureVideo(0).isEnabled = true;
         }
 
-        void OnGUI() {
-            enableMainCamera = GUI.Toggle(
-                new Rect(50, 50, 150, 50),
-                enableMainCamera,
-                " Enable Video Camera");
-            if (enableMainCamera) {
-                VRCapture.Instance.GetCaptureVideo(0).isEnabled = true;
-            }
-            else {
-                VRCapture.Instance.GetCaptureVideo(0).isEnabled = false;
-            }
-            if (GUI.Button(new Rect(50, 350, 150, 50), "Capture Start")) {
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.V) && enable360Camera == false)
+            {
+                enable360Camera = true;
                 print("Capture Start");
                 VRCapture.Instance.BeginCaptureSession();
             }
-            if (GUI.Button(new Rect(50, 450, 150, 50), "Capture Stop")) {
+            else if (Input.GetKeyDown(KeyCode.V) && enable360Camera == true)
+            {
+                enable360Camera = false;
                 print("Capture Stop");
                 VRCapture.Instance.EndCaptureSession();
             }
-            if (GUI.Button(new Rect(50, 550, 150, 50), "Open Video Folder")) {
+            if (Input.GetKeyDown(KeyCode.O))
+            {
                 System.Diagnostics.Process.Start(VRCapture.Instance.FolderPath);
             }
         }
 
-        void HandleCaptureFinish() {
+        void HandleCaptureFinish()
+        {
             print("Capture Finish");
         }
     }
