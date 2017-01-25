@@ -6,21 +6,10 @@ namespace VRCapture {
 
     [RequireComponent(typeof(AudioListener))]
     public class VRCaptureAudio : MonoBehaviour {
-
-        [DllImport("VRCaptureLib")]
-        static extern System.IntPtr LibAudioCaptureAPI_Get(int rate, string path, string ffpath);
-
-        [DllImport("VRCaptureLib")]
-        static extern void LibAudioCaptureAPI_SendFrame(System.IntPtr api, byte[] data);
-
-        [DllImport("VRCaptureLib")]
-        static extern void LibAudioCaptureAPI_Close(System.IntPtr api);
-
         /// <summary>
         /// Whether this audio listiner is enabled for capture.
         /// </summary>
         public bool isEnabled = true;
-
         /// <summary>
         /// Whether or not capturing from this audio listener is currently in progress.
         /// </summary>
@@ -34,11 +23,22 @@ namespace VRCapture {
         /// </summary>
         System.IntPtr audioPointer;
         System.Byte[] audioByteBuffer;
-
-        public string FilePath {
-            get; private set;
+        /// <summary>
+        /// Destination the captured audio will pushed to.
+        /// </summary>
+        string destinationPath = null;
+        public string DestinationPath {
+            get {
+                if(destinationPath != null)
+                    return destinationPath;
+                string audioPath = System.DateTime.Now.ToString("yyyy-MMM-d-HH-mm-ss") + ".wav";
+                destinationPath = VRCaptureConfig.SaveFolder + audioPath;
+                return destinationPath;
+            }
+            set {
+                destinationPath = value;
+            }
         }
-
         /// <summary>
         /// To be notified when the audio is complete, register a delegate 
         /// using this signature by calling RegisterSessionCompleteDelegate.
@@ -59,60 +59,70 @@ namespace VRCapture {
         public void RegisterCaptureCompleteDelegate(AudioCaptureCompleteDelegate del) {
             audioCaptureCompleteDelegate += del;
         }
-
+        /// <summary>
+        /// If capture audio still processing.
+        /// </summary>
+        /// <returns><c>true</c>, if processing was ised, <c>false</c> otherwise.</returns>
         public bool IsProcessing() {
             return isCapturing;
         }
-
+        /// <summary>
+        /// Cleanup this instance.
+        /// </summary>
         public void Cleanup() {
             audioCaptureCompleteDelegate = null;
-            if (File.Exists(FilePath)) {
-                File.Delete(FilePath);
+            if(File.Exists(DestinationPath)) {
+                File.Delete(DestinationPath);
             }
+            LibAudioCaptureAPI_Clean(libAPI);
         }
-
+        /// <summary>
+        /// Start capture audio.
+        /// </summary>
         public void StartCapture() {
-            if (!isEnabled) {
+            if(!isEnabled) {
                 return;
             }
-            if (IsProcessing()) {
+            if(IsProcessing()) {
                 Debug.LogWarning("VRCaptureAudio: capture still processing!");
                 return;
             }
-            string audioPath = System.DateTime.Now.ToString("yyyy-MMM-d-HH-mm-ss") + ".wav";
-            FilePath = VRCapture.Instance.FolderPath + "/" + audioPath;
             libAPI = LibAudioCaptureAPI_Get(
                 AudioSettings.outputSampleRate,
-                FilePath,
-                VRCapture.Instance.FFmpegPath);
-            if (libAPI == System.IntPtr.Zero) {
+                DestinationPath,
+                VRCaptureConfig.FFmpegPath);
+            if(libAPI == System.IntPtr.Zero) {
                 Debug.LogWarning("VRCaptureAudio: get native LibAudioCaptureAPI failed!");
                 return;
             }
             InitCapture();
             isCapturing = true;
         }
-
+        /// <summary>
+        /// Finish capture audio.
+        /// </summary>
         public void FinishCapture() {
-            if (!isEnabled) {
+            if(!isEnabled) {
                 return;
             }
-            if (!isCapturing) {
+            if(!isCapturing) {
                 Debug.LogWarning("VRCaptureVideo: capture not start yet!");
             }
             isCapturing = false;
             LibAudioCaptureAPI_Close(libAPI);
 
             // Notif caller audio capture complete.
-            if (audioCaptureCompleteDelegate != null) {
+            if(audioCaptureCompleteDelegate != null) {
                 audioCaptureCompleteDelegate();
             }
 
-            if (VRCapture.Instance.debug) {
-                Debug.Log("VRCaptureAudio: Encod process finish!");
+            if(VRCapture.Instance.debug) {
+                Debug.Log("VRCaptureAudio: Encode process finish!");
             }
         }
-
+        /// <summary>
+        /// Init capture audio.
+        /// </summary>
         void InitCapture() {
             audioByteBuffer = new System.Byte[8192];
             GCHandle audioHandle = GCHandle.Alloc(audioByteBuffer, GCHandleType.Pinned);
@@ -120,10 +130,19 @@ namespace VRCapture {
         }
 
         void OnAudioFilterRead(float[] data, int channels) {
-            if (isCapturing) {
+            if(isCapturing) {
                 Marshal.Copy(data, 0, audioPointer, 2048);
                 LibAudioCaptureAPI_SendFrame(libAPI, audioByteBuffer);
             }
         }
+
+        [DllImport("VRCaptureLib")]
+        static extern System.IntPtr LibAudioCaptureAPI_Get(int rate, string path, string ffpath);
+        [DllImport("VRCaptureLib")]
+        static extern void LibAudioCaptureAPI_SendFrame(System.IntPtr api, byte[] data);
+        [DllImport("VRCaptureLib")]
+        static extern void LibAudioCaptureAPI_Close(System.IntPtr api);
+        [DllImport("VRCaptureLib")]
+        static extern void LibAudioCaptureAPI_Clean(System.IntPtr api);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace VRCapture.Demo
 {
@@ -10,6 +11,7 @@ namespace VRCapture.Demo
         bool enable360Camera = false;
         bool enableTopDownCamera = true;
         bool enableLeftRightCamera = true;
+        public Text captureText;
         //bool enableOnlyAudio = false;
 
         void Start()
@@ -25,17 +27,19 @@ namespace VRCapture.Demo
             {
                 enable360Camera = true;
                 print("Capture Start");
+                captureText.text = "Capturing Video";
                 VRCapture.Instance.BeginCaptureSession();
             }
             else if (Input.GetKeyDown(KeyCode.V) && enable360Camera == true)
             {
                 enable360Camera = false;
                 print("Capture Stop");
+                captureText.text = "Capture Ended";
                 VRCapture.Instance.EndCaptureSession();
             }
             if (Input.GetKeyDown(KeyCode.O))
             {
-                System.Diagnostics.Process.Start(VRCapture.Instance.FolderPath);
+                System.Diagnostics.Process.Start(VRCaptureConfig.SaveFolder);
             }
         }
 
