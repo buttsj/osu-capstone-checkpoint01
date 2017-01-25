@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Backslash))
         {
-            Application.CaptureScreenshot("Screenshot " + System.DateTime.Now.ToString("h:mm:ss tt") + ".png");
+            Application.CaptureScreenshot("Screenshot " + screenshotNumber + ".png");
             screenshotNumber++;
         }
 
