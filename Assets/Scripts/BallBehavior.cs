@@ -65,11 +65,11 @@ public class BallBehavior : MonoBehaviour {
             }
 
             float xDifference = gameObject.transform.position.x - collision.gameObject.transform.position.x;
-            if (collision.gameObject.name == "Paddle1" && (xDifference > 2.5f || xDifference < -2.5f))
+            if (collision.gameObject.name == "Paddle1" && (xDifference > 3f || xDifference < -3f))
             {
                 gameObject.transform.Translate(0, 0, -5);
             }
-            else if (collision.gameObject.name == "Paddle2" && (xDifference > 2.5f || xDifference < -2.5f)) {
+            else if (collision.gameObject.name == "Paddle2" && (xDifference > 3f || xDifference < -3f)) {
                 gameObject.transform.Translate(0, 0, 5);
             }
 
