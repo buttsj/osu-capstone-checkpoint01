@@ -36,7 +36,8 @@ public class BallBehavior : MonoBehaviour {
     }
 
     void FixedUpdate() {
-
+        //Testing Mergetool
+        int i = 15;
         if (Input.GetKeyDown(KeyCode.Space) && !active)
         {
             active = true;
@@ -51,6 +52,7 @@ public class BallBehavior : MonoBehaviour {
         if (!active)
         {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
+            i++;
         }
         i++;
         oldVelocity = rb.velocity;
