@@ -42,7 +42,7 @@ public class BallBehavior : MonoBehaviour {
             active = true;
             rb.velocity = ballVelocity + paddle1.GetComponent<Rigidbody>().velocity;
         }
-
+        int i = 0;
         if (!resting)
         {
             handleInactiveBall();
@@ -52,7 +52,7 @@ public class BallBehavior : MonoBehaviour {
         {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
         }
-
+        i++;
         oldVelocity = rb.velocity;
     }
 
