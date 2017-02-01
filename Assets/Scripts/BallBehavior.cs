@@ -66,11 +66,7 @@ public class BallBehavior : MonoBehaviour {
                 rb.velocity = new Vector3(collision.gameObject.GetComponent<Rigidbody>().velocity.x, 0, -oldVelocity.z);
                 oldVelocity = rb.velocity;
             }
-            else
-            {
-                rb.velocity = -oldVelocity;
-                oldVelocity = rb.velocity;
-            }
+            // Deleted Stuff
 
             float xDifference = gameObject.transform.position.x - collision.gameObject.transform.position.x;
             if (collision.gameObject.name == "Paddle1" && (xDifference > 3f || xDifference < -3f))
