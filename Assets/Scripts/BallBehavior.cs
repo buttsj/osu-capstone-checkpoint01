@@ -36,14 +36,11 @@ public class BallBehavior : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        //Testing Mergetool
-        int i = 15;
         if (Input.GetKeyDown(KeyCode.Space) && !active)
         {
             active = true;
             rb.velocity = ballVelocity + paddle1.GetComponent<Rigidbody>().velocity;
         }
-        int i = 0;
         if (!resting)
         {
             handleInactiveBall();
@@ -52,9 +49,7 @@ public class BallBehavior : MonoBehaviour {
         if (!active)
         {
             transform.position = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, paddle1.transform.position.z + 1);
-            i++;
         }
-        i++;
         oldVelocity = rb.velocity;
     }
 
@@ -70,6 +65,10 @@ public class BallBehavior : MonoBehaviour {
             {
                 rb.velocity = -oldVelocity;
                 oldVelocity = rb.velocity;
+                int i = 0;
+                i++;
+
+                //comment comment comment
             }
 
             float xDifference = gameObject.transform.position.x - collision.gameObject.transform.position.x;
